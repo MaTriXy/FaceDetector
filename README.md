@@ -61,10 +61,24 @@ To display detected faces on top of the camera view, set up your layout as follo
 
 Create `FaceDetectorProcessor`:
 
+Java:
+
 ```java
 FaceDetectorProcessor processor = FaceDetectorProcessor.with(this)
     .listener(faces -> {
         rectanglesView.setRectangles(faces);  // (Optional) Show detected faces on the view.
+
+        // ... or do whatever you want with the result
+    })
+    .build()
+```
+
+or Kotlin:
+
+```kotlin
+private val processor = FaceDetectorProcessor.with(this)
+    .listener({ faces ->
+        rectanglesView.setRectangles(faces)  // (Optional) Show detected faces on the view.
 
         // ... or do whatever you want with the result
     })
@@ -91,15 +105,15 @@ Add dependency to your `build.gradle`
 
 ```groovy
 repositories {
-    maven {
-        url  "http://dl.bintray.com/fotoapparat/fotoapparat"
+    maven { 
+        url  "http://dl.bintray.com/fotoapparat/fotoapparat" 
     }
 }
 
-compile 'io.fotoapparat:facedetector:1.0.0'
+implementation 'io.fotoapparat:facedetector:1.0.0'
 
 // If you are using Fotoapparat add this one as well
-compile 'io.fotoapparat.fotoapparat:library:1.2.0' // or later version
+implementation 'io.fotoapparat.fotoapparat:library:1.2.0' // or later version
 ```
 
 ## Contact us
